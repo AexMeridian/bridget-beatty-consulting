@@ -1,0 +1,96 @@
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	padding: 0.85rem 1.75rem;
+	border-radius: var(--radius-button);
+	font-weight: 600;
+	font-size: 0.9375rem;
+	text-decoration: none;
+	border: 1.5px solid transparent;
+	cursor: pointer;
+	font-family: inherit;
+	transition:
+		transform var(--transition-fast),
+		box-shadow var(--transition-base),
+		background var(--transition-base),
+		border-color var(--transition-base),
+		color var(--transition-base);
+	white-space: nowrap;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+}
+
+.btn:active {
+	transform: translateY(0) scale(0.98);
+}
+
+.btn.solid-navy {
+	background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+	border-color: rgba(44, 148, 148, 0.45);
+	color: var(--color-white);
+	box-shadow: 0 10px 24px -12px rgba(9, 22, 44, 0.55);
+}
+
+.btn.solid-navy:hover {
+	border-color: rgba(44, 148, 148, 0.8);
+	box-shadow: 0 14px 30px -12px rgba(9, 22, 44, 0.6);
+}
+
+.btn.solid-blue {
+	background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-dark) 100%);
+	border-color: rgba(44, 148, 148, 0.45);
+	color: var(--color-white);
+	box-shadow: 0 10px 24px -12px rgba(24, 116, 152, 0.55);
+}
+
+.btn.solid-blue:hover {
+	border-color: rgba(44, 148, 148, 0.8);
+	box-shadow: 0 14px 30px -12px rgba(24, 116, 152, 0.6);
+}
+
+.btn.solid-teal {
+	background: linear-gradient(135deg, var(--color-teal-dark) 0%, var(--color-teal) 100%);
+	border-color: rgba(255, 255, 255, 0.4);
+	color: var(--color-white);
+	box-shadow: 0 10px 24px -12px rgba(32, 110, 110, 0.55);
+}
+
+.btn.solid-teal:hover {
+	border-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 0 14px 30px -12px rgba(32, 110, 110, 0.6);
+}
+
+.btn.outline-white {
+	border-color: rgba(255, 255, 255, 0.55);
+	color: var(--color-white);
+}
+
+.btn.outline-white:hover {
+	border-color: var(--color-white);
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.btn.outline-navy {
+	border-color: var(--color-navy);
+	color: var(--color-navy);
+}
+
+.btn.outline-navy:hover {
+	background: var(--color-navy);
+	color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.btn {
+		transition:
+			background-color var(--transition-base),
+			color var(--transition-base);
+	}
+	.btn:hover,
+	.btn:active {
+		transform: none;
+	}
+}

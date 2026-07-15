@@ -1,0 +1,58 @@
+<a href="#top" class="back-to-top" data-back-to-top aria-label="Back to top">
+	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+		<line x1="12" y1="19" x2="12" y2="5"></line>
+		<polyline points="5,12 12,5 19,12"></polyline>
+	</svg>
+</a>
+
+<script src="../../scripts/back-to-top.js"></script>
+
+<style>
+	.back-to-top {
+		position: fixed;
+		right: var(--space-5);
+		bottom: var(--space-5);
+		width: 46px;
+		height: 46px;
+		border-radius: 50%;
+		background: var(--color-navy);
+		color: var(--color-white);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: var(--shadow-md);
+		z-index: 40;
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(12px);
+		transition:
+			opacity var(--transition-base),
+			transform var(--transition-base),
+			background var(--transition-base);
+	}
+
+	.back-to-top.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.back-to-top:hover {
+		background: var(--color-teal-dark);
+		transform: translateY(-3px);
+	}
+
+	.back-to-top svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.back-to-top {
+			transition: opacity var(--transition-base), background var(--transition-base);
+		}
+		.back-to-top:hover {
+			transform: none;
+		}
+	}
+</style>

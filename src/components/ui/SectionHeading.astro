@@ -1,0 +1,85 @@
+---
+interface Props {
+	id: string;
+	eyebrow: string;
+	heading: string;
+	/** A substring of `heading` to set in italic teal — the site's one recurring headline device. */
+	accent?: string;
+	intro?: string;
+	align?: 'left' | 'center';
+	tone?: 'light' | 'dark';
+}
+
+const { id, eyebrow, heading, accent, intro, align = 'center', tone = 'light' } = Astro.props;
+const parts = accent && heading.includes(accent) ? heading.split(accent) : null;
+---
+
+<div class:list={['heading-block', align, tone]}>
+	<p class="eyebrow" id={`${id}-eyebrow`}>{eyebrow}</p>
+	<h2 id={id}>
+		{parts ? <>{parts[0]}<em>{accent}</em>{parts[1]}</> : heading}
+	</h2>
+	{intro && <p class="intro">{intro}</p>}
+</div>
+
+<style>
+	.heading-block {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		margin-bottom: var(--space-7);
+	}
+
+	.heading-block.center {
+		align-items: center;
+		text-align: center;
+	}
+
+	.heading-block.left {
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.eyebrow {
+		font-size: var(--fs-eyebrow);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-blue-dark);
+	}
+
+	.dark .eyebrow {
+		color: var(--color-teal);
+	}
+
+	h2 {
+		font-family: var(--font-serif);
+		font-size: var(--fs-h2);
+		line-height: 1.15;
+		max-width: 42ch;
+	}
+
+	.dark h2 {
+		color: var(--color-white);
+	}
+
+	h2 em {
+		font-style: italic;
+		color: var(--color-teal);
+	}
+
+	.dark h2 em {
+		color: var(--color-teal-light);
+	}
+
+	.intro {
+		font-size: var(--fs-lede);
+		color: var(--text-muted);
+		max-width: 60ch;
+		line-height: var(--lh-snug);
+	}
+
+	.dark .intro {
+		color: var(--text-on-dark-muted);
+	}
+</style>

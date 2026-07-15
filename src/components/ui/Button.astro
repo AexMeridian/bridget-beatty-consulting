@@ -1,0 +1,20 @@
+---
+interface Props {
+	href: string;
+	variant?: 'solid-navy' | 'solid-blue' | 'solid-teal' | 'outline-white' | 'outline-navy';
+	ariaLabel?: string;
+	external?: boolean;
+}
+
+const { href, variant = 'solid-navy', ariaLabel, external = false } = Astro.props;
+---
+
+<a
+	class:list={['btn', variant]}
+	href={href}
+	aria-label={ariaLabel}
+	target={external ? '_blank' : undefined}
+	rel={external ? 'noopener noreferrer' : undefined}
+>
+	<span class="btn-label"><slot /></span>
+</a>

@@ -1,0 +1,73 @@
+:root {
+	/* Brand colors — official swatches */
+	--color-teal: #2c9494;
+	--color-teal-dark: #206e6e;
+	--color-blue: #187498;
+	--color-blue-dark: #125973;
+	--color-navy: #182850;
+	--color-navy-light: #24386b;
+	--color-ink: #040404;
+	--color-white: #ffffff;
+	--color-teal-light: #8debe5;
+	--color-paper: #fcfaf4;
+	--color-cloud: #f2efe6;
+	--color-border: #e4e0d4;
+
+	/*
+	 * Contrast rule (measured against #ffffff):
+	 * teal ≈ 3.65:1  -> large text (>=24px / 18.66px bold), icons, borders, dark-bg text ONLY
+	 * blue ≈ 5.26:1   -> AA-safe for small text/links and solid buttons with white text
+	 * navy is darkest -> safest choice for body text on light backgrounds & solid buttons
+	 */
+	--text-heading: var(--color-navy);
+	--text-body: #2a2f3a;
+	--text-muted: #5b6472;
+	--text-on-dark: #ffffff;
+	--text-on-dark-muted: rgba(255, 255, 255, 0.78);
+	--text-link: var(--color-blue);
+	--text-accent-large: var(--color-teal);
+
+	/* Type scale (fluid) */
+	--font-sans: 'InterVariable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-script: 'Caveat', cursive;
+	--font-serif: 'Playfair Display', 'Georgia', serif;
+
+	--fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+	--fs-small: 0.875rem;
+	--fs-eyebrow: 0.8125rem;
+	--fs-h1: clamp(2.5rem, 1.9rem + 3vw, 4.25rem);
+	--fs-h2: clamp(1.9rem, 1.65rem + 1.2vw, 2.75rem);
+	--fs-h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+	--fs-lede: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+
+	--lh-tight: 1.1;
+	--lh-snug: 1.35;
+	--lh-body: 1.65;
+
+	/* Spacing scale */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-7: 3rem;
+	--space-8: 4.5rem;
+	--space-9: 6.5rem;
+
+	--radius-sm: 8px;
+	--radius-md: 14px;
+	--radius-lg: 24px;
+	--radius-pill: 999px;
+	--radius-button: var(--radius-pill);
+
+	--shadow-sm: 0 2px 8px rgba(4, 4, 4, 0.06);
+	--shadow-md: 0 12px 32px -8px rgba(9, 22, 44, 0.18);
+	--shadow-lg: 0 24px 64px -16px rgba(9, 22, 44, 0.28);
+
+	--max-width: 1200px;
+	--max-width-wide: 1600px;
+	--transition-base: 220ms ease;
+	--transition-fast: 120ms ease;
+	--transition-spring: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}

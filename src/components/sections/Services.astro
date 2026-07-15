@@ -1,0 +1,129 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { SERVICES } from '../../data/site';
+
+const icons = [
+	// Strategic Planning — clarity/question mark in circle
+	`<circle cx="12" cy="12" r="9"/><path d="M9.2 9.6a2.8 2.8 0 1 1 4.3 2.4c-.9.6-1.5 1.1-1.5 2.4"/><path d="M12 16.9v.1"/>`,
+	// Fund Development — dollar coin
+	`<circle cx="12" cy="12" r="9"/><path d="M12 6.5v11"/><path d="M15 9.2c0-1.2-1.3-2.1-3-2.1s-3 .9-3 2.1c0 3 6 1.4 6 4.3 0 1.2-1.3 2.1-3 2.1s-3-.9-3-2.1"/>`,
+	// Building Partnerships — overlapping circles
+	`<circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/>`,
+	// Nonprofit Formation & Management — building
+	`<path d="M4 10 L12 4 L20 10"/><rect x="5" y="10" width="14" height="9" rx="1"/><rect x="10" y="14" width="4" height="5"/>`,
+	// Program Development — layers
+	`<polygon points="12,3 21,8 12,13 3,8"/><polyline points="3,12 12,17 21,12"/><polyline points="3,16 12,21 21,16"/>`,
+	// Quality Improvement & Culture — people/community group
+	`<circle cx="12" cy="8" r="2.6"/><path d="M7 20v-1.3a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3V20"/><circle cx="5" cy="9.5" r="1.9"/><path d="M2 19.5v-.9a2.4 2.4 0 0 1 2.4-2.4h.8"/><circle cx="19" cy="9.5" r="1.9"/><path d="M22 19.5v-.9a2.4 2.4 0 0 0-2.4-2.4h-.8"/>`,
+];
+---
+
+<section class="services" id="services" aria-labelledby="services-heading">
+	<div class="container">
+		<SectionHeading
+			id="services-heading"
+			eyebrow="Services"
+			heading="Strategic consulting for mission-driven organizations."
+			accent="mission-driven"
+			intro="Strategic planning, fund development, building partnerships, forming and managing nonprofit organizations, program development, quality improvement, and organizational culture."
+		/>
+
+		<ul class="grid">
+			{SERVICES.map((service, index) => (
+				<li class="card" data-reveal style={`--reveal-delay: ${(index % 3) * 90}ms`}>
+					<span class="icon" set:html={`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[index]}</svg>`} />
+					<h3>{service.title}</h3>
+					<p>{service.description}</p>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.services {
+		padding-block: var(--space-9);
+		background: var(--color-paper);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-5);
+	}
+
+	.card {
+		background: var(--color-white);
+		border-radius: var(--radius-md);
+		padding: var(--space-6);
+		border: 1px solid var(--color-border);
+		transition:
+			transform var(--transition-base),
+			box-shadow var(--transition-base),
+			border-color var(--transition-base);
+	}
+
+	.card:hover {
+		transform: translateY(-6px);
+		box-shadow: var(--shadow-md);
+		border-color: var(--color-teal);
+	}
+
+	.icon {
+		display: inline-flex;
+		width: 44px;
+		height: 44px;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		background: rgba(24, 116, 152, 0.1);
+		color: var(--color-blue);
+		margin-bottom: var(--space-4);
+		transition:
+			background var(--transition-base),
+			color var(--transition-base),
+			transform var(--transition-spring);
+	}
+
+	.card:hover .icon {
+		background: var(--color-teal-dark);
+		color: var(--color-white);
+		transform: scale(1.1) rotate(-6deg);
+	}
+
+	.icon :global(svg) {
+		width: 22px;
+		height: 22px;
+	}
+
+	h3 {
+		font-size: var(--fs-h3);
+		margin-bottom: var(--space-2);
+		transition: color var(--transition-base);
+	}
+
+	.card:hover h3 {
+		color: var(--color-teal-dark);
+	}
+
+	.card p {
+		color: var(--text-muted);
+		line-height: var(--lh-snug);
+	}
+
+	@media (max-width: 900px) {
+		.grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 620px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

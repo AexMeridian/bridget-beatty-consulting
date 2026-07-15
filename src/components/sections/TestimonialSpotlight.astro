@@ -1,0 +1,156 @@
+---
+import InitialBadge from '../ui/InitialBadge.astro';
+import { TESTIMONIAL } from '../../data/site';
+
+const paragraphs = TESTIMONIAL.quote.split('\n\n');
+---
+
+<section class="testimonial" id="testimonials" aria-labelledby="testimonial-heading">
+	<div class="container">
+		<p class="eyebrow" id="testimonial-heading">In Their Words</p>
+
+		<figure data-reveal>
+			<span class="quote-mark" aria-hidden="true">&ldquo;</span>
+			<blockquote>
+				{paragraphs.map((p) => (
+					<p>{p}</p>
+				))}
+			</blockquote>
+			<figcaption>
+				<span class="badge-ring">
+					<InitialBadge label={TESTIMONIAL.initials} tone="dark" size="lg" />
+				</span>
+				<div>
+					<p class="name">{TESTIMONIAL.name}</p>
+					<p class="role">{TESTIMONIAL.role}</p>
+				</div>
+			</figcaption>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.testimonial {
+		position: relative;
+		isolation: isolate;
+		padding-block: var(--space-9);
+		background: linear-gradient(155deg, var(--color-navy) 0%, var(--color-blue-dark) 100%);
+		color: var(--color-white);
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		overflow: hidden;
+	}
+
+	/*
+	 * A loose scattered-diamond texture, faded out toward the center so it
+	 * never sits behind the quote itself — just a quiet presence in the
+	 * margins of an otherwise plain gradient.
+	 */
+	.testimonial::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect x='28' y='28' width='7' height='7' fill='%238debe5' fill-opacity='0.16' transform='rotate(45 31.5 31.5)'/%3E%3C/svg%3E");
+		background-size: 64px 64px;
+		mask-image: radial-gradient(ellipse 65% 55% at center, transparent 60%, black 100%);
+		-webkit-mask-image: radial-gradient(ellipse 65% 55% at center, transparent 60%, black 100%);
+	}
+
+	.testimonial > .container {
+		position: relative;
+		z-index: 1;
+	}
+
+	.eyebrow {
+		font-size: var(--fs-eyebrow);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-teal);
+		text-align: center;
+		margin-bottom: var(--space-6);
+	}
+
+	figure {
+		max-width: 48rem;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.quote-mark {
+		font-family: var(--font-serif);
+		font-style: italic;
+		font-size: 5rem;
+		color: var(--color-teal);
+		line-height: 1;
+		display: block;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.quote-mark {
+			animation: quote-in 280ms ease-out both;
+			animation-delay: 80ms;
+		}
+	}
+
+	@keyframes quote-in {
+		from {
+			opacity: 0;
+			transform: scale(0.9) translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+	}
+
+	.badge-ring {
+		position: relative;
+		display: inline-flex;
+		border-radius: 50%;
+	}
+
+	.badge-ring::after {
+		content: '';
+		position: absolute;
+		inset: -6px;
+		border-radius: 50%;
+		border: 1px solid rgba(44, 148, 148, 0.5);
+	}
+
+	blockquote {
+		margin: 0 0 var(--space-6);
+	}
+
+	blockquote p {
+		font-size: var(--fs-lede);
+		line-height: var(--lh-snug);
+		color: var(--text-on-dark);
+	}
+
+	blockquote p + p {
+		margin-top: var(--space-4);
+	}
+
+	figcaption {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-3);
+	}
+
+	figcaption .name {
+		font-weight: 700;
+		color: var(--color-white);
+	}
+
+	figcaption .role {
+		color: var(--text-on-dark-muted);
+		font-size: 0.875rem;
+	}
+
+	figcaption > div {
+		text-align: left;
+	}
+
+</style>

@@ -1,0 +1,105 @@
+---
+import InitialBadge from '../ui/InitialBadge.astro';
+import { NOTABLE_ORGS, CREDENTIALS } from '../../data/site';
+
+const initialsFor = (name: string) =>
+	name
+		.split(' ')
+		.filter((word) => /^[A-Z]/.test(word))
+		.slice(0, 2)
+		.map((word) => word[0])
+		.join('');
+---
+
+<section class="trust-strip" aria-label="Notable organizations and credentials">
+	<div class="container trust-inner">
+		<p class="eyebrow" data-reveal>Select Clients</p>
+
+		<ul class="orgs">
+			{NOTABLE_ORGS.map((org, index) => (
+				<li data-reveal style={`--reveal-delay: ${index * 80}ms`}>
+					<InitialBadge label={initialsFor(org)} size="sm" />
+					<span>{org}</span>
+				</li>
+			))}
+		</ul>
+
+		<p class="credentials" data-reveal style="--reveal-delay: 240ms">{CREDENTIALS.join(' · ')}</p>
+	</div>
+</section>
+
+<style>
+	.trust-strip {
+		position: relative;
+		background: var(--color-paper);
+		border-bottom: 1px solid var(--color-border);
+		padding-block: var(--space-7);
+		/*
+		 * A diagonal top edge instead of the previous hard color cut from the
+		 * hero — the negative margin pulls this section up so the clipped
+		 * corner overlaps the hero's own bottom edge, letting its gradient
+		 * show through the notch rather than stopping abruptly.
+		 */
+		margin-top: -56px;
+		padding-top: calc(var(--space-7) + 56px);
+		clip-path: polygon(0 56px, 100% 0, 100% 100%, 0 100%);
+	}
+
+	.trust-inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: var(--space-4);
+	}
+
+	.eyebrow {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-blue-dark);
+	}
+
+	.orgs {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-6);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.orgs li {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--text-heading);
+		transition: transform var(--transition-base);
+	}
+
+	.orgs li:hover {
+		transform: translateY(-2px);
+	}
+
+	.orgs li :global(.badge) {
+		transition:
+			transform var(--transition-base),
+			background var(--transition-base),
+			color var(--transition-base);
+	}
+
+	.orgs li:hover :global(.badge) {
+		background: var(--color-teal);
+		color: var(--color-white);
+		transform: scale(1.08);
+	}
+
+	.credentials {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+</style>

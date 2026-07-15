@@ -1,0 +1,183 @@
+---
+import { CONTACT } from '../../data/site';
+---
+
+<section class="contact" id="contact" aria-labelledby="contact-heading">
+	<div class="container contact-inner" data-reveal>
+		<p class="eyebrow">Let's Talk</p>
+		<h2 id="contact-heading">Your next stage of growth starts with a <em>conversation</em>.</h2>
+		<p class="lede">
+			Reach out directly by email — Bridget responds personally to every inquiry.
+		</p>
+
+		<div class="actions">
+			<a class="contact-card" href={`mailto:${CONTACT.email}`} aria-label={`Email Bridget Beatty at ${CONTACT.email}`}>
+				<span class="contact-icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="3" y="5" width="18" height="14" rx="2"/>
+						<path d="m4 6 8 6 8-6"/>
+					</svg>
+				</span>
+				<span class="contact-copy">
+					<strong>Email Bridget</strong>
+					<span>{CONTACT.email}</span>
+				</span>
+				<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<line x1="5" y1="12" x2="19" y2="12"></line>
+					<polyline points="12,5 19,12 12,19"></polyline>
+				</svg>
+			</a>
+		</div>
+
+		<p class="location">{CONTACT.location} &middot; {CONTACT.serviceArea}</p>
+	</div>
+</section>
+
+<style>
+	.contact {
+		position: relative;
+		padding-block: var(--space-9);
+		background: linear-gradient(135deg, var(--color-navy) 0%, #14506b 55%, var(--color-teal-dark) 100%);
+		overflow: hidden;
+	}
+
+	.contact-inner {
+		position: relative;
+		max-width: 44rem;
+		margin: 0 auto;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-4);
+	}
+
+	.eyebrow {
+		font-size: var(--fs-eyebrow);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-teal-light);
+	}
+
+	h2 {
+		font-family: var(--font-serif);
+		font-size: var(--fs-h2);
+		line-height: 1.15;
+		color: var(--color-white);
+	}
+
+	h2 em {
+		font-style: italic;
+		color: var(--color-teal-light);
+	}
+
+	.lede {
+		color: var(--text-on-dark-muted);
+		font-size: var(--fs-lede);
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-4);
+		margin-top: var(--space-4);
+		width: 100%;
+	}
+
+	.contact-card {
+		flex: 0 1 340px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		text-align: left;
+		text-decoration: none;
+		background: rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		border-radius: var(--radius-md);
+		padding: var(--space-5);
+		transition:
+			transform var(--transition-base),
+			box-shadow var(--transition-base),
+			border-color var(--transition-base),
+			background var(--transition-base);
+	}
+
+	.contact-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+		border-color: rgba(141, 235, 229, 0.6);
+		background: rgba(255, 255, 255, 0.13);
+	}
+
+	.contact-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: rgba(141, 235, 229, 0.16);
+		color: var(--color-teal-light);
+		flex-shrink: 0;
+		transition:
+			background var(--transition-base),
+			color var(--transition-base),
+			transform var(--transition-base);
+	}
+
+	.contact-card:hover .contact-icon {
+		background: var(--color-teal-light);
+		color: var(--color-navy);
+		transform: scale(1.06);
+	}
+
+	.contact-icon svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.contact-copy {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.contact-copy strong {
+		font-size: 0.9375rem;
+		color: var(--color-white);
+	}
+
+	.contact-copy span {
+		color: var(--text-on-dark-muted);
+		font-size: 0.875rem;
+	}
+
+	.arrow {
+		width: 18px;
+		height: 18px;
+		margin-left: auto;
+		color: var(--color-teal-light);
+		flex-shrink: 0;
+		transition: transform var(--transition-base);
+	}
+
+	.contact-card:hover .arrow {
+		transform: translateX(4px);
+	}
+
+	.location {
+		color: var(--text-on-dark-muted);
+		font-size: 0.875rem;
+		margin-top: var(--space-3);
+	}
+
+	@media (max-width: 620px) {
+		.contact-card {
+			flex: 1 1 100%;
+		}
+	}
+</style>

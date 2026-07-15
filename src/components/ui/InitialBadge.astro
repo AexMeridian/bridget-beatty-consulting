@@ -1,0 +1,53 @@
+---
+interface Props {
+	label: string;
+	tone?: 'light' | 'dark';
+	size?: 'sm' | 'md' | 'lg';
+}
+
+const { label, tone = 'light', size = 'md' } = Astro.props;
+---
+
+<span class:list={['badge', tone, size]} aria-hidden="true">{label}</span>
+
+<style>
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		font-weight: 700;
+		flex-shrink: 0;
+		font-family: var(--font-sans);
+	}
+
+	.sm {
+		width: 2.25rem;
+		height: 2.25rem;
+		font-size: 0.75rem;
+	}
+
+	.md {
+		width: 3rem;
+		height: 3rem;
+		font-size: 0.9375rem;
+	}
+
+	.lg {
+		width: 4rem;
+		height: 4rem;
+		font-size: 1.125rem;
+	}
+
+	.light {
+		background: var(--color-cloud);
+		color: var(--color-navy);
+		border: 1px solid var(--color-border);
+	}
+
+	.dark {
+		background: rgba(255, 255, 255, 0.12);
+		color: var(--color-white);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+	}
+</style>

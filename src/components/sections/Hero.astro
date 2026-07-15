@@ -1,0 +1,326 @@
+---
+import { Image } from 'astro:assets';
+import headshot from '../../assets/brand/bridget-headshot.jpg';
+import Button from '../ui/Button.astro';
+import ScrollCue from '../ui/ScrollCue.astro';
+import ButterflyIcon from '../ui/ButterflyIcon.astro';
+import { CONTACT } from '../../data/site';
+
+const BUTTERFLIES = [
+	{ top: '14%', left: '5%', size: 44, dx: 150, dy: 100, duration: 15, delay: 0, opacity: 0.5, color: 'var(--color-teal-light)' },
+	{ top: '58%', left: '40%', size: 28, dx: -110, dy: -70, duration: 19, delay: -6, opacity: 0.32, color: 'rgba(255,255,255,0.55)' },
+	{ top: '6%', left: '68%', size: 54, dx: -100, dy: 130, duration: 13, delay: -3, opacity: 0.6, color: 'var(--color-teal-light)' },
+	{ top: '72%', left: '16%', size: 22, dx: 90, dy: -60, duration: 20, delay: -11, opacity: 0.28, color: 'rgba(255,255,255,0.5)' },
+	{ top: '32%', left: '86%', size: 36, dx: -150, dy: 50, duration: 16, delay: -8, opacity: 0.45, color: 'var(--color-teal-light)' },
+	{ top: '46%', left: '9%', size: 26, dx: 120, dy: -90, duration: 17, delay: -4, opacity: 0.3, color: 'rgba(255,255,255,0.5)' },
+	{ top: '20%', left: '48%', size: 20, dx: -80, dy: 60, duration: 21, delay: -9, opacity: 0.24, color: 'var(--color-teal-light)' },
+	{ top: '84%', left: '58%', size: 32, dx: 100, dy: -70, duration: 14, delay: -2, opacity: 0.4, color: 'var(--color-teal-light)' },
+];
+---
+
+<section class="hero" id="top" aria-labelledby="hero-heading">
+	<div class="hero-atmosphere" aria-hidden="true"></div>
+
+	<div class="hero-butterflies" aria-hidden="true">
+		{BUTTERFLIES.map((b) => (
+			<ButterflyIcon
+				style={`--bfly-top: ${b.top}; --bfly-left: ${b.left}; --bfly-size: ${b.size}px; --bfly-dx: ${b.dx}px; --bfly-dy: ${b.dy}px; --bfly-duration: ${b.duration}s; --bfly-delay: ${b.delay}s; --bfly-opacity: ${b.opacity}; color: ${b.color};`}
+			/>
+		))}
+	</div>
+
+	<div class="hero-content">
+		<div class="hero-copy">
+			<p class="eyebrow" data-reveal>
+				Bridget Beatty Consulting &middot; {CONTACT.location}
+			</p>
+
+			<h1 id="hero-heading" data-reveal style="--reveal-delay: 60ms">
+				Helping <em>organizations</em><br />
+				grow<br />
+				and evolve.
+			</h1>
+
+			<p class="lede" data-reveal style="--reveal-delay: 140ms">
+				Strategic planning, public affairs, fund development, and
+				partnership-building for nonprofit organizations, coalitions, and
+				public-sector teams focused on community impact.
+			</p>
+
+			<div class="hero-actions" data-reveal style="--reveal-delay: 220ms">
+				<Button href={`mailto:${CONTACT.email}`} variant="solid-teal" ariaLabel={`Email Bridget Beatty at ${CONTACT.email}`}>Start a Conversation</Button>
+				<Button href="#services" variant="outline-white">Explore the Practice →</Button>
+			</div>
+		</div>
+
+		<div class="hero-figure" data-reveal style="--reveal-delay: 180ms">
+			<div class="hero-shapes" aria-hidden="true">
+				<svg class="shape shape-ring" viewBox="0 0 100 100">
+					<defs>
+						<linearGradient id="heroRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" style="stop-color: var(--color-teal-light)" />
+							<stop offset="100%" style="stop-color: var(--color-blue)" />
+						</linearGradient>
+					</defs>
+					<circle cx="50" cy="50" r="38" fill="none" stroke="url(#heroRingGrad)" stroke-width="9" />
+				</svg>
+				<svg class="shape shape-circle-sm" viewBox="0 0 100 100">
+					<defs>
+						<linearGradient id="heroCircleSmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" style="stop-color: var(--color-teal-light)" />
+							<stop offset="100%" style="stop-color: var(--color-blue)" />
+						</linearGradient>
+					</defs>
+					<circle cx="50" cy="50" r="42" fill="none" stroke="url(#heroCircleSmGrad)" stroke-width="7" />
+				</svg>
+				<svg class="shape shape-circle-xs" viewBox="0 0 100 100">
+					<defs>
+						<linearGradient id="heroCircleXsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" style="stop-color: var(--color-teal-light)" />
+							<stop offset="100%" style="stop-color: var(--color-blue)" />
+						</linearGradient>
+					</defs>
+					<circle cx="50" cy="50" r="40" fill="none" stroke="url(#heroCircleXsGrad)" stroke-width="8" />
+				</svg>
+			</div>
+			<div class="photo-frame">
+				<Image src={headshot} alt="Bridget Beatty" width={480} height={480} widths={[240, 340, 480]} sizes="(max-width: 720px) 180px, (max-width: 1400px) 260px, 340px" loading="eager" fetchpriority="high" class="photo" />
+			</div>
+			<div class="identity-card">
+				<p class="identity-name">Bridget Beatty</p>
+				<p class="identity-title">Principal</p>
+				<span class="identity-location">{CONTACT.location}</span>
+			</div>
+		</div>
+	</div>
+
+	<ScrollCue />
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		min-height: min(92vh, 860px);
+		overflow: hidden;
+		isolation: isolate;
+		background: linear-gradient(128deg, #172c48 0%, #1b5470 46%, #1a909d 100%);
+	}
+
+	/*
+	 * HERO-ATMOSPHERE-SLOT — reserved for a future animated background
+	 * treatment. Currently a static gradient; a later effect can be dropped
+	 * in here without touching the layout above.
+	 */
+	.hero-atmosphere {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		background:
+			radial-gradient(60% 55% at 82% 12%, rgba(141, 235, 229, 0.16) 0%, rgba(141, 235, 229, 0) 70%),
+			radial-gradient(50% 45% at 8% 92%, rgba(9, 22, 44, 0.35) 0%, rgba(9, 22, 44, 0) 70%);
+	}
+
+	/*
+	 * Ambient drifting butterflies — decorative only, sit behind the static
+	 * hero copy (which is in normal flow and always paints above negative
+	 * z-index layers) so they never overlap or distract from the headline
+	 * or CTAs.
+	 */
+	.hero-butterflies {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.hero-content {
+		width: 100%;
+		max-width: var(--max-width-wide);
+		margin-inline: auto;
+		padding-inline: clamp(1.25rem, 1rem + 1.5vw, 2.25rem);
+		padding-top: clamp(4rem, 3rem + 5vw, 6rem);
+		padding-bottom: var(--space-9);
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: var(--space-8);
+		align-items: center;
+	}
+
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.eyebrow {
+		font-size: var(--fs-eyebrow);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	h1 {
+		font-family: var(--font-serif);
+		font-weight: 700;
+		color: var(--color-white);
+		font-size: var(--fs-h1);
+		line-height: 1.06;
+	}
+
+	h1 em {
+		font-style: italic;
+		color: var(--color-teal-light);
+	}
+
+	.lede {
+		color: var(--text-on-dark);
+		font-size: var(--fs-lede);
+		max-width: 46ch;
+		line-height: var(--lh-snug);
+		margin-top: var(--space-2);
+		opacity: 0.92;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-4);
+		margin-top: var(--space-2);
+	}
+
+	.hero-figure {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		padding-bottom: var(--space-7);
+	}
+
+	/*
+	 * Quiet geometric accents (ring, triangle, hexagon) filling the empty
+	 * space around the photo — placed before .photo-frame in DOM order so
+	 * they paint underneath it without needing a z-index (which would
+	 * otherwise escape this element's stacking context, since .hero-figure
+	 * only has position:relative, not its own isolated stack).
+	 */
+	.hero-shapes {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.shape {
+		position: absolute;
+		overflow: visible;
+	}
+
+	.shape-ring {
+		top: -6%;
+		right: 4%;
+		width: clamp(70px, 9vw, 130px);
+		opacity: 0.55;
+	}
+
+	.shape-circle-sm {
+		bottom: 20%;
+		left: 0%;
+		width: clamp(40px, 6vw, 76px);
+		opacity: 0.5;
+	}
+
+	.shape-circle-xs {
+		top: 44%;
+		left: -4%;
+		width: clamp(34px, 5vw, 58px);
+		opacity: 0.35;
+	}
+
+	.photo-frame {
+		width: clamp(230px, 24vw, 340px);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		padding: 8px;
+		background: linear-gradient(155deg, rgba(141, 235, 229, 0.9), rgba(44, 148, 148, 0.4));
+		box-shadow: var(--shadow-lg);
+		transition: transform var(--transition-base);
+	}
+
+	.hero-figure:hover .photo-frame {
+		transform: translateY(-4px);
+	}
+
+	.photo {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 4px solid rgba(9, 22, 44, 0.4);
+	}
+
+	.identity-card {
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translateX(-38%);
+		background: var(--color-white);
+		border-radius: var(--radius-md);
+		padding: var(--space-4) var(--space-5);
+		box-shadow: var(--shadow-lg);
+		min-width: 12rem;
+	}
+
+	.identity-name {
+		font-weight: 700;
+		color: var(--text-heading);
+		font-size: 1.0625rem;
+	}
+
+	.identity-title {
+		color: var(--text-muted);
+		font-size: 0.875rem;
+		margin-top: 2px;
+	}
+
+	.identity-location {
+		display: inline-block;
+		margin-top: var(--space-2);
+		color: var(--color-blue-dark);
+		font-weight: 600;
+		font-size: 0.8125rem;
+	}
+
+	@media (max-width: 900px) {
+		.hero-content {
+			grid-template-columns: 1fr;
+			padding-top: clamp(3.5rem, 3rem + 4vw, 5rem);
+		}
+
+		.hero-figure {
+			order: -1;
+			padding-bottom: var(--space-8);
+		}
+
+		.hero-shapes {
+			display: none;
+		}
+
+		.photo-frame {
+			width: clamp(160px, 38vw, 200px);
+		}
+
+		h1 {
+			font-size: clamp(2.25rem, 1.9rem + 3vw, 3rem);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.identity-card {
+			min-width: 10rem;
+			padding: var(--space-3) var(--space-4);
+		}
+	}
+</style>

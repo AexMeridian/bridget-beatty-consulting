@@ -1,0 +1,64 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource/caveat/700.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/playfair-display/700-italic.css';
+import '@fontsource/playfair-display/900.css';
+import '../styles/global.css';
+import { CONTACT } from '../data/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Bridget Beatty Consulting | Strategic Planning & Fund Development for Nonprofits',
+	description = 'Strategic planning, fund development, and partnership-building for mission-driven nonprofits, public-sector organizations, and community coalitions across the Denver Metro Area.',
+} = Astro.props;
+
+const siteOrigin = Astro.site ?? Astro.url.origin;
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).toString();
+const ogImage = new URL('/og-image.jpg', siteOrigin).toString();
+
+const businessSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: CONTACT.name,
+	description,
+	email: CONTACT.email,
+	url: siteOrigin.toString(),
+	image: ogImage,
+	areaServed: CONTACT.location,
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<meta name="theme-color" content="#182850" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} is:inline />
+	</head>
+	<body>
+		<slot />
+		<script src="../scripts/reveal.js"></script>
+	</body>
+</html>

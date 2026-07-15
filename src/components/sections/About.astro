@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import icon from '../../assets/brand/icon-mark.png';
+import { SHORT_BIO, DIFFERENTIATOR_QUOTE, CREDENTIALS } from '../../data/site';
+---
+
+<section class="about" id="about" aria-labelledby="about-heading">
+	<div class="container about-grid">
+		<div class="about-panel" data-reveal>
+			<div class="badge-wrap">
+				<Image src={icon} alt="" width={148} height={217} widths={[96, 148]} sizes="72px" class="badge-icon" />
+			</div>
+			<blockquote>
+				<p>{DIFFERENTIATOR_QUOTE}</p>
+			</blockquote>
+		</div>
+
+		<div class="about-copy" data-reveal style="--reveal-delay: 120ms">
+			<p class="eyebrow">About Bridget</p>
+			<h2 id="about-heading">Turning mission into <em>momentum</em>.</h2>
+			<p class="bio">{SHORT_BIO}</p>
+
+			<dl class="facts">
+				<div>
+					<dt>Credentials</dt>
+					<dd>{CREDENTIALS.join(' · ')}</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about {
+		padding-block: var(--space-9);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: 0.85fr 1.15fr;
+		gap: var(--space-8);
+		align-items: stretch;
+	}
+
+	.about-panel {
+		background: linear-gradient(155deg, var(--color-navy) 0%, var(--color-blue-dark) 100%);
+		border-radius: var(--radius-lg);
+		padding: var(--space-7);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: var(--space-6);
+		box-shadow: var(--shadow-md);
+		transition:
+			transform var(--transition-base),
+			box-shadow var(--transition-base);
+	}
+
+	.about-panel:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.badge-wrap {
+		width: 72px;
+		height: 72px;
+		border-radius: 50%;
+		background: var(--color-white);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-2);
+		transition: transform var(--transition-spring);
+	}
+
+	.about-panel:hover .badge-wrap {
+		transform: rotate(-6deg) scale(1.06);
+	}
+
+	.badge-icon {
+		width: 100%;
+		height: auto;
+	}
+
+	blockquote {
+		margin: 0;
+	}
+
+	blockquote p {
+		font-family: var(--font-script);
+		color: var(--color-white);
+		font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+		line-height: 1.25;
+	}
+
+	.eyebrow {
+		font-size: var(--fs-eyebrow);
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-blue-dark);
+		margin-bottom: var(--space-3);
+	}
+
+	.about-copy h2 {
+		font-family: var(--font-serif);
+		font-size: var(--fs-h2);
+		line-height: 1.15;
+		max-width: 20ch;
+		margin-bottom: var(--space-5);
+	}
+
+	.about-copy h2 em {
+		font-style: italic;
+		color: var(--color-teal);
+	}
+
+	.bio {
+		color: var(--text-body);
+		font-size: var(--fs-lede);
+		line-height: var(--lh-snug);
+		margin-bottom: var(--space-6);
+	}
+
+	.facts {
+		display: flex;
+		gap: var(--space-7);
+		margin: 0 0 var(--space-6);
+		padding: var(--space-5) 0;
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.facts dt {
+		font-size: 0.8125rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-muted);
+		margin-bottom: var(--space-1);
+	}
+
+	.facts dd {
+		margin: 0;
+		font-weight: 700;
+		color: var(--text-heading);
+	}
+
+	@media (max-width: 900px) {
+		.about-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 720px) {
+		.facts {
+			flex-direction: column;
+			gap: var(--space-4);
+		}
+	}
+</style>
