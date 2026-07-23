@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bridgetbeattyconsulting.com/sitemap.xml
+Sitemap: https://beattyconsult.org/sitemap.xml
