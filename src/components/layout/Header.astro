@@ -95,7 +95,7 @@ import { NAV_LINKS, CONTACT } from '../../data/site';
 	}
 
 	.logo-img {
-		height: 132px;
+		height: clamp(44px, 14vw, 132px);
 		width: auto;
 		transition: opacity 500ms ease;
 	}
@@ -145,6 +145,10 @@ import { NAV_LINKS, CONTACT } from '../../data/site';
 
 	.nav-toggle {
 		display: none;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
 		background: none;
 		border: none;
 		padding: var(--space-2);
